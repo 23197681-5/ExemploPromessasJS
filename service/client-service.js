@@ -17,25 +17,9 @@ const crianovaLinha = (nome, email, id) =>{
 const tabela = document.querySelector('[data-tabela]');
 
 const listaClientes =  () =>{
-    const promise = new Promise((resolve, reject) => { 
-
-        const http = new XMLHttpRequest();
-        http.open('get', 'http://localhost:3000/profile')
-    
-    
-        http.onload = () => {
-            if(http.status>=400){
-                reject(JSON.parse(http.response));
-            }else{
-                resolve(JSON.parse(http.response));
-            }    
-        }
-
-        http.send();
-    });
-    console.log(promise);
-        return promise;
-   
+    return fetch('http://localhost:3000/profile').then(resposta =>{
+        return resposta.json();
+    }) 
 }
 listaClientes().then(data => {
         console.log(data);
