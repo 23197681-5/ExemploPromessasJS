@@ -9,6 +9,16 @@
       "nome": "mainha",
       "email": "mainha@emaildamae.com.br",
       "id": 2
+    },
+    {
+      "nome": "Lucas",
+      "email": "lucasxd@gmail.com",
+      "id": 3
+    },
+    {
+      "nome": "Weldemio",
+      "email": "demio@gmail.com",
+      "id": 4
     }
   ]
 }

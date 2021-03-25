@@ -1,19 +1,28 @@
 import {clienteService} from '../service/client-service.js'
 
-const pegaUrl = new URL(window.location);
+( async()=>{
 
-const id = pegaUrl.searchParams.get("id");
-''
-var inputNome = document.querySelector('[data-nome]');
-const inputMail = document.querySelector('[data-email]');
-clienteService.detalhaCliente(id).then( dados => {
-    inputNome.value = dados.nome;
-    inputMail.value = dados.email;
-})
-const formulario = document.querySelector('[data-form]');
-formulario.addEventListener('submit', (evento)=>{
-    evento.preventDefault();
-    clienteService.atualizaCliente(id, inputNome.value, inputMail.value).then(()=>{
-        window.location.href = '../telas/edicao_concluida.html';
-    })
-})
+    const pegaUrl = new URL(window.location);
+    const id = pegaUrl.searchParams.get("id");
+    ''
+    const inputNome = document.querySelector('[data-nome]');
+    const inputMail = document.querySelector('[data-email]');
+    try{
+        const dados =  await clienteService.detalhaCliente(id);
+        inputNome.value = dados.nome;
+        inputMail.value = dados.email;
+    }catch(e){
+        console.log(e);
+        window.location.href = '../telas/erro.html';
+    }
+    const formulario = document.querySelector('[data-form]');
+    formulario.addEventListener('submit', async (evento)=>{
+        evento.preventDefault();
+        try{
+            await clienteService.atualizaCliente(id, inputNome.value, inputMail.value);
+            window.location.href = '../telas/edicao_concluida.html';
+        }catch(e){
+            console.log(e);
+            window.location.href = '../telas/erro.html';
+        }
+    })})()
