@@ -1,4 +1,4 @@
-import {clienteService} from '../service/client-service'
+import {clienteService} from '../service/client-service.js'
 const crianovaLinha = (nome, email, id) =>{
     const linhaNovoCliente = document.createElement('tr');
     const conteudo = `<td class="td" data-td>${nome}</td>
